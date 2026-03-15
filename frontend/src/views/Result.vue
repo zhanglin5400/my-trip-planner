@@ -317,6 +317,7 @@ import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'
 import type { TripPlan } from '@/types'
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000'
 const router = useRouter()
 const tripPlan = ref<TripPlan | null>(null)
 const editMode = ref(false)
@@ -432,7 +433,7 @@ const loadAttractionPhotos = async () => {
 
   tripPlan.value.days.forEach(day => {
     day.attractions.forEach(attraction => {
-      const promise = fetch(`http://localhost:8000/api/poi/photo?name=${encodeURIComponent(attraction.name)}`)
+      const promise = fetch(`${API_BASE_URL}/api/poi/photo?name=${encodeURIComponent(attraction.name)}`)
         .then(res => res.json())
         .then(data => {
           if (data.success && data.data.photo_url) {
