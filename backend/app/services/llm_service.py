@@ -28,32 +28,6 @@ def get_llm():
         
         print(f"✅ LLM服务初始化成功")
         print(f"   模型: {os.getenv('OPENAI_MODEL')}")  # 建议改为 OPENAI_MODEL
-
-        # ====== 在这里添加包装代码 ======
-        import functools
-        import json
-
-        def ensure_string_content(messages):
-            for msg in messages:
-                if hasattr(msg, 'content') and not isinstance(msg.content, str):
-                    if hasattr(msg, 'type') and msg.type == 'tool':
-                        msg.content = json.dumps(msg.content, ensure_ascii=False)
-                    else:
-                        msg.content = str(msg.content)
-            return messages
-
-        original_ainvoke = _llm_instance.ainvoke
-
-        @functools.wraps(original_ainvoke)
-        async def safe_ainvoke(input, config=None, **kwargs):
-            if isinstance(input, dict) and 'messages' in input:
-                input['messages'] = ensure_string_content(input['messages'])
-            elif isinstance(input, list):
-                input = ensure_string_content(input)
-            return await original_ainvoke(input, config, **kwargs)
-
-        _llm_instance.ainvoke = safe_ainvoke
-        # ====== 包装代码结束 ======
     
     return _llm_instance
 
