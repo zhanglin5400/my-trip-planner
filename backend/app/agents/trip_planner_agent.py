@@ -113,7 +113,33 @@ class MultiAgentTripPlanner:
             print(f"✅ 旅行计划生成完成!")
             print(f"{'='*60}\n")
 
+
+
+
+
+            # === 新增：调试 JSON 序列化 ===
+            import json
+            try:
+                # 如果 final_plan 是 Pydantic 模型，使用 .dict() 转换
+                plan_dict = final_plan.dict() if hasattr(final_plan, 'dict') else final_plan
+                json_str = json.dumps(plan_dict, ensure_ascii=False)
+                print(f"✅ JSON 序列化成功，长度: {len(json_str)}")
+            except Exception as e:
+                print(f"❌ JSON 序列化失败: {e}")
+                # 这里可以打印更详细的信息，比如字段类型
+                import traceback
+                traceback.print_exc()
+                # 可以选择继续返回，但最好抛出异常让上层处理
+                # 为了调试，我们暂时不 raise，而是返回备用计划
+                return self._create_fallback_plan(request)
+            # =================================
+
             return final_plan
+
+
+
+
+            #return final_plan
 
         except Exception as e:
             print(f"❌ 生成旅行计划失败: {str(e)}")
