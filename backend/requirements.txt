@@ -83,8 +83,7 @@ pyperclip==1.11.0
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 python-multipart==0.0.22
-pywin32==311
-pywin32-ctypes==0.2.3
+
 PyYAML==6.0.3
 referencing==0.37.0
 regex==2026.2.28
@@ -108,7 +107,7 @@ uuid_utils==0.14.1
 uvicorn==0.41.0
 watchfiles==1.1.1
 websockets==16.0
-win32_setctime==1.2.0
+
 xxhash==3.6.0
 yarl==1.23.0
 zipp==3.23.0
