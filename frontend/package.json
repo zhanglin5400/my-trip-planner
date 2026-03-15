@@ -2,11 +2,14 @@
   "name": "helloagents-trip-planner-frontend",
   "private": true,
   "version": "1.0.0",
+  "homepage": "https://zhanglin5400.github.io/my-trip-planner",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@amap/amap-jsapi-loader": "^1.0.1",
@@ -20,6 +23,7 @@
   "devDependencies": {
     "@types/node": "^22.10.5",
     "@vitejs/plugin-vue": "^5.2.1",
+    "gh-pages": "^6.3.0",
     "typescript": "^5.7.3",
     "vite": "^6.0.7",
     "vue-tsc": "^2.2.0"
