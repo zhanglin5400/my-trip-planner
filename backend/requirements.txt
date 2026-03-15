@@ -48,7 +48,7 @@ jsonschema-specifications==2025.9.1
 keyring==25.7.0
 langchain-core==1.2.19
 langchain-mcp-adapters==0.2.1
-langchain-openai==1.1.11
+langchain-openai>=1.0.0,<2.0.0
 langgraph==1.0.10
 langgraph-checkpoint==4.0.1
 langgraph-prebuilt==1.0.8
@@ -63,7 +63,7 @@ more-itertools==10.8.0
 multidict==6.7.1
 networkx==3.6.1
 numpy==2.4.3
-openai==2.26.0
+
 openapi-pydantic==0.5.1
 opentelemetry-api==1.40.0
 orjson==3.11.7
@@ -112,3 +112,4 @@ xxhash==3.6.0
 yarl==1.23.0
 zipp==3.23.0
 zstandard==0.25.0
+openai>=1.0.0,<2.0.0
