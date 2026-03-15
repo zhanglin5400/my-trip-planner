@@ -6,6 +6,9 @@ WORKDIR /app
 COPY backend/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 RUN pip install uv
+# 应用修复 MCP JSON 解析问题
+COPY fix_mcp.py /app/fix_mcp.py
+RUN python /app/fix_mcp.py
 
 # 复制整个 backend 目录
 COPY backend/ .
